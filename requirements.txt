@@ -1,0 +1,11 @@
+biopython
+tqdm
+pandas
+requests
+mmtf-python
+pillow
+rdkit-pypi
+gensim
+torch
+torchinfo
+sklearn

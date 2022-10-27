@@ -3,7 +3,7 @@ Count vectorization, term frequency-inverse document frequency, latent Dirichlet
 
 A support vector machine classifier, naive Bayes classifier and simple neural network classifier are used to investigate the use of these embeddings as featrues. We predict the family of proteins using the protein sequences, blood-brain barrier penetration(permeability) and qualitative binary binding results for a set of inhibitors of human $\beta$-secretase 1(BACE-1).
 
-We also investigate the use of the LDA embeddings in differentiating between proteins that are in a known protein-protein interaction and those that are not.
+We also investigate the use of the LDA embeddings in differentiating between proteins that are in a known protein-protein interaction and those that are not. A simple heuristic using the distances between these embeddings is used for protein-protein interaction prediction.
 
 # Installation instructions
 

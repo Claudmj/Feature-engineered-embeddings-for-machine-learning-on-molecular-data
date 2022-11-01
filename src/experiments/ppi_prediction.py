@@ -64,22 +64,23 @@ true_mean = np.mean(diagonal)
 exclude_diag = distance_array[~np.isnan(distance_array)]
 
 proportion_list = []
+flattened_distance_array = distance_array.reshape(-1)
 
 for i in tqdm(range(1000000)):
-    distance_sample = np.random.choice(exclude_diag, pairs-1, replace=True)
+    distance_sample = np.random.choice(flattened_distance_array, pairs, replace=True)
     proportion_list.append(np.mean(distance_sample))
 
-print(np.mean(exclude_diag))
+print(np.mean(distance_array))
 print(true_mean)
-s = np.sqrt(((exclude_diag.shape[0]-1) * np.std(exclude_diag) + (diagonal.shape[0] * np.std(diagonal))) / (diagonal.shape[0] + exclude_diag.shape[0] + 2))
-print((np.mean(exclude_diag)-true_mean)/s)
+s = np.sqrt(((flattened_distance_array.shape[0]-1) * np.std(flattened_distance_array) + (diagonal.shape[0] * np.std(diagonal))) / (diagonal.shape[0] + flattened_distance_array.shape[0] + 2))
+print((np.mean(flattened_distance_array)-true_mean)/s)
 
 count = [i for i in proportion_list if i < true_mean]
 
 plt.hist(proportion_list)
 plt.title("p-value:" + str(len(count)/1000000))
 plt.axvline(true_mean, color='r', linewidth=2, label="Mean distance between known interactions")
-plt.axvline(np.mean(exclude_diag), color='black', linewidth=2, label="Mean distance between unknown interactions")
+plt.axvline(np.mean(distance_array), color='black', linewidth=2, label="Mean distance between all interactions")
 
 plt.legend()
 plt.savefig(os.path.join(LOG_DIRECTORY, "ppi_histogram.png"), format='png', dpi=120)

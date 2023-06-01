@@ -21,7 +21,7 @@ class nbc_master_class():
     def __init__(self, model_parameters, train_data, test_data, train_labels, test_labels, embedding_type, load_model=None):
         super(nbc_master_class, self).__init__()
 
-        self.model_name = model_parameters.get("model_name", "EveAffinity")
+        self.model_name = model_parameters.get("model_name", "NBC")
         self.dataset_name = model_parameters.get("dataset_name", "")
         self.model_is_trained = False
         self.embedding_type = embedding_type

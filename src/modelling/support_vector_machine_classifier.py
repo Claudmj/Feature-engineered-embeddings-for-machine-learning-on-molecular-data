@@ -18,7 +18,7 @@ class svm_master_class():
     def __init__(self, model_parameters, train_data, test_data, train_labels, test_labels, load_model=None):
         super(svm_master_class, self).__init__()
 
-        self.model_name = model_parameters.get("model_name", "EveAffinity")
+        self.model_name = model_parameters.get("model_name", "SVM")
         self.dataset_name = model_parameters.get("dataset_name", "")
         self.model_is_trained = False
 

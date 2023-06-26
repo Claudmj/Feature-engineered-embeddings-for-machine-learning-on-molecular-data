@@ -51,6 +51,12 @@ def bhattacharyya_dist(arr1, arr2):
     coeff[coeff == 0] = 0.000001
     return -np.log(coeff)
 
+def remove_diag(array):
+    flattened = array.reshape(-1)
+    exclude_diag = np.delete(flattened, range(0, flattened.shape[0], array.shape[0] + 1), 0)
+    exclude_diag = exclude_diag.reshape(array.shape[0], array.shape[0] - 1)
+    return exclude_diag
+
 receptor_embeddings = lda_model.embedding[:pairs, :]
 ligand_embeddings = lda_model.embedding[pairs:, :]
 
@@ -61,7 +67,7 @@ for i in tqdm(range(int(pairs))):
 
 diagonal = np.diagonal(distance_array)
 true_mean = np.mean(diagonal)
-exclude_diag = distance_array[~np.isnan(distance_array)]
+exclude_diag = remove_diag(distance_array)
 
 proportion_list = []
 flattened_distance_array = distance_array.reshape(-1)
